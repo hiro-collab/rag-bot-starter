@@ -1,5 +1,4 @@
-# ===== OS junk (Windows/macOS) =====
-# (These files should never be committed)
+# ===== OS junk =====
 Thumbs.db
 thumbs.db
 Desktop.ini
@@ -7,90 +6,63 @@ desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
-# ===== Python =====
+# ===== Python bytecode =====
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.so
+*.dylib
+*.dll
 .Python
-.venv/
-venv/
-env/
-pip-wheel-metadata/
-*.egg-info/
-.eggs/
+
+# ===== Build artifacts =====
 build/
 dist/
-.coverage*
-htmlcov/
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+site/
+
+# ===== Tool caches =====
 .pytest_cache/
 .mypy_cache/
 .pytype/
 .pyre/
 .ruff_cache/
-.cache/
-# Poetry & pip caches
-.poetry-cache/
-.pip-cache/
-
-# Virtualenv
-.venv/
-
-# Local clone & vector DB
-local_repo/
-storage/chroma/
-storage/logs/
-storage/chunks.jsonl
-
-# ===== Jupyter =====
 .ipynb_checkpoints/
+.cache/
+.coverage
+.coverage.*
 
-# ===== Editors/IDEs =====
-.vscode/
-.idea/
-*.code-workspace
+# ===== Virtual environments =====
+.venv/
+venv/
+env/
+.python-version
 
-# ===== Logs & temp =====
-*.log
-*.tmp
-*.bak
-
-# ===== Project-specific =====
-# .env files often contain secrets; keep them local
+# ===== Environment / Secrets =====
 .env
 .env.*
-credentials.json
+.envrc
 
-# Local clone of your days/ repo (ingest target)
-local_repo/
-
-# Chroma vector DB and generated chunks/logs
-storage/chroma/
-storage/logs/
-storage/chunks.jsonl
-
-# ===== Node (optional; safe to ignore if unused) =====
-node_modules/
-
-# ===== Misc binaries =====
-*.zip
-*.exe
-*.dll
-*.iso
-
-# --- Poetry & pip caches (project-local) ---
+# ===== Poetry =====
 .poetry-cache/
-.pip-cache/
 
-# --- Virtualenv ---
-.venv/
-
-# --- Local clone & vector DB artifacts ---
+# ===== Local clone & vector DB artifacts =====
 local_repo/
 storage/chroma/
 storage/logs/
 storage/chunks.jsonl
 
-# --- Hugging Face (if you ever set HF_HOME into project) ---
+# ===== Hugging Face =====
 hf_cache/
 .huggingface/
+
+# ===== Editors/IDE =====
+.vscode/
+.idea/
+
+# ===== Node.js (if present) =====
+node_modules/
