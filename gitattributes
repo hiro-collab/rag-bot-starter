@@ -1,0 +1,47 @@
+# Use attributes to control line endings on Windows-friendly repos.
+# Rule of thumb:
+# - Keep repository content normalized to LF
+# - Force CRLF only for Windows-native scripts (.bat/.cmd/.ps1)
+
+# Default: normalize all text files to LF in the repo
+* text=auto eol=lf
+
+# Scripts / configs that should always be LF (WSL/Linux tools expect LF)
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.cfg text eol=lf
+*.ini text eol=lf
+*.ipynb text eol=lf
+*.editorconfig text eol=lf
+*.gitattributes text eol=lf
+*.gitignore text eol=lf
+
+# Windows-native scripts: keep CRLF on checkout for better tooling compat
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files (no line ending conversions or diffs)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.zip binary
+*.pdf binary
+*.exe binary
+*.dll binary
+*.pkl binary
+*.pt binary
+*.onnx binary
+*.mp4 binary
+*.mov binary
+*.7z binary
+*.rar binary

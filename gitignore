@@ -1,0 +1,67 @@
+# ===== OS junk (Windows/macOS) =====
+# (These files should never be committed)
+Thumbs.db
+thumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+build/
+dist/
+.coverage*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.pytype/
+.pyre/
+.ruff_cache/
+.cache/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== Editors/IDEs =====
+.vscode/
+.idea/
+*.code-workspace
+
+# ===== Logs & temp =====
+*.log
+*.tmp
+*.bak
+
+# ===== Project-specific =====
+# .env files often contain secrets; keep them local
+.env
+.env.*
+credentials.json
+
+# Local clone of your days/ repo (ingest target)
+local_repo/
+
+# Chroma vector DB and generated chunks/logs
+storage/chroma/
+storage/logs/
+storage/chunks.jsonl
+
+# ===== Node (optional; safe to ignore if unused) =====
+node_modules/
+
+# ===== Misc binaries =====
+*.zip
+*.exe
+*.dll
+*.iso
