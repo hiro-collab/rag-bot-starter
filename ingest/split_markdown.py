@@ -50,7 +50,17 @@ def main():
 
     count = 0
     with open(out, "w", encoding="utf-8") as fw:
-        for md in iter_md_files(repo / "days"):
+        # Scan both 'days/' and repo root for Markdown files
+        targets = [repo / "days", repo]  # add others if needed
+        seen = set()
+        for target in targets:
+            if not target.exists():
+                continue
+            for md in iter_md_files(target):
+                # Skip duplicates when repo == days parent
+                if str(md) in seen:
+                    continue
+                seen.add(str(md))
             text = md.read_text(encoding="utf-8", errors="ignore")
             chunks = split_text(text)
             for idx, ch in enumerate(chunks):
