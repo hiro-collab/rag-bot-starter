@@ -28,9 +28,12 @@ def main():
     with open(args.chunks, "r", encoding="utf-8") as fr:
         for line in fr:
             obj = json.loads(line)
-            ids.append(obj["id"])
+            meta = obj.get("metadata", {})
+            # ✅ Make ID unique by including the relative path
+            rid = f"{meta.get('path','')}-{obj['id']}"
+            ids.append(rid)
             texts.append(obj["text"])
-            metas.append(obj.get("metadata", {}))
+            metas.append(meta)
 
     # Upsert
     if ids:
@@ -40,3 +43,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -29,6 +29,18 @@ htmlcov/
 .pyre/
 .ruff_cache/
 .cache/
+# Poetry & pip caches
+.poetry-cache/
+.pip-cache/
+
+# Virtualenv
+.venv/
+
+# Local clone & vector DB
+local_repo/
+storage/chroma/
+storage/logs/
+storage/chunks.jsonl
 
 # ===== Jupyter =====
 .ipynb_checkpoints/

@@ -49,32 +49,35 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
 
     count = 0
+    from hashlib import blake2b
     with open(out, "w", encoding="utf-8") as fw:
-        # Scan both 'days/' and repo root for Markdown files
-        targets = [repo / "days", repo]  # add others if needed
-        seen = set()
+        seen_files = set()
+        targets = [repo / "days", repo]  # add repo/"docs" etc. if needed
         for target in targets:
             if not target.exists():
                 continue
             for md in iter_md_files(target):
-                # Skip duplicates when repo == days parent
-                if str(md) in seen:
+                rel_path = str(md.relative_to(repo)).replace("\\", "/")
+                if rel_path in seen_files:
                     continue
-                seen.add(str(md))
-            text = md.read_text(encoding="utf-8", errors="ignore")
-            chunks = split_text(text)
-            for idx, ch in enumerate(chunks):
-                doc = {
-                    "id": f"{md.stem}_{idx}",
-                    "text": ch,
-                    "metadata": {
-                        "path": str(md.relative_to(repo)),
-                        "file": md.name,
-                        "stem": md.stem,
-                    },
-                }
-                fw.write(json.dumps(doc, ensure_ascii=False) + "\n")
-                count += 1
+                seen_files.add(rel_path)
+                text = md.read_text(encoding="utf-8", errors="ignore")
+                chunks = split_text(text)
+                for idx, ch in enumerate(chunks):
+                    # Build a robust unique id: path + chunk index + content hash
+                    h = blake2b(ch.encode("utf-8"), digest_size=8).hexdigest()
+                    doc_id = f"{rel_path}::{idx}::{h}"
+                    doc = {
+                        "id": doc_id,
+                        "text": ch,
+                        "metadata": {
+                            "path": rel_path,
+                            "file": md.name,
+                            "stem": md.stem,
+                        },
+                    }
+                    fw.write(json.dumps(doc, ensure_ascii=False) + "\n")
+                    count += 1
     print(f"✅ Wrote {count} chunks -> {out}")
 
 if __name__ == "__main__":
