@@ -66,3 +66,7 @@ hf_cache/
 
 # ===== Node.js (if present) =====
 node_modules/
+
+.pip-cache/
+report/
+tree.txt
