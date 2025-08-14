@@ -2,24 +2,34 @@
 name = "rag-bot-starter"
 version = "0.1.0"
 description = "Local RAG bot"
-authors = [
-    {name = "Hiromu",email = "mamo96358@gmail.com"}
-]
-license = {text = "MIT"}
+authors = [{ name = "Hiromu", email = "mamo96358@gmail.com" }]
+license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "chromadb (>=0.5.5)",
-    "sentence-transformers (>=3.0.1)",
-    "python-dotenv (>=1.0.1)",
-    "pydantic (>=2.8.2)",
-    "slack-sdk (>=3.31.0)",
-    "fastapi (>=0.112.2)",
-    "uvicorn (>=0.30.6)",
-    "requests (>=2.32.3)"
-]
+requires-python = ">=3.12,<3.13"   # ← 3.12.10運用ならこれでOK
 
+dependencies = [
+  "chromadb>=0.5.5",
+  "sentence-transformers>=3.0.1",
+  "python-dotenv>=1.0.1",
+  "pydantic>=2.8.2",
+  "slack-sdk>=3.31.0",
+  "fastapi>=0.112.2",
+  "uvicorn>=0.30.6",
+  "requests>=2.32.3",
+  "FlagEmbedding>=1.3.5,<2.0.0",
+  "torch (==2.8.0)"
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+[[tool.poetry.source]]
+name = "pytorch-cu126"         # choose name you like
+url = "https://download.pytorch.org/whl/cu126"
+priority = "supplemental"
+[tool.poetry.dependencies]
+torch = {source = "pytorch-cu126"}
