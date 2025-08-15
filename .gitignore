@@ -68,7 +68,6 @@ hf_cache/
 node_modules/
 
 .pip-cache/
-report/
 tree.txt
 storage/drafts/
 storage/chunks.jsonl
